@@ -1,24 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AllMeetupsPage from "./pages/AllMeetups";
+import NewMeetupPage from "./pages/NewMeetup";
+import FavouritePage from "./pages/Favourite";
+import ForgotPasswordPage from "./pages/ForgotPassword";
+import Layout from "./components/layout/Layout";
+import LoginPage from "./pages/Login";
+import CreateAccountPage from "./pages/CreateAccount";
+import { FavouriteContextProvider } from "./store/favourite-context";
+import UserAuthContextProvider from "./store/UserAuthContext"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserAuthContextProvider>
+    <FavouriteContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <LoginPage />
+              </>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <>
+                <ForgotPasswordPage />
+              </>
+            }
+          />
+          <Route
+            path="/homepage"
+            element={
+              <>
+                <Layout>
+                  <AllMeetupsPage />
+                </Layout>
+              </>
+            }
+          />
+          <Route
+            path="/new-meetup"
+            element={
+              <>
+                <Layout>
+                  <NewMeetupPage />
+                </Layout>
+              </>
+            }
+          />
+          <Route
+            path="/favourites"
+            element={
+              <>
+                <Layout>
+                  <FavouritePage />
+                </Layout>
+              </>
+            }
+          />
+          <Route
+            path="/create-account"
+            element={
+              <>
+                <CreateAccountPage />
+              </>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </FavouriteContextProvider>
+    </UserAuthContextProvider>
   );
 }
 

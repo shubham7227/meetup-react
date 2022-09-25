@@ -1,0 +1,77 @@
+.main {
+    background-color: white;
+    margin-top: 5em;
+    position: relative;
+    left: 35%;
+    width: 30%;
+    border: 1px solid gray;
+    border-radius: 2%;
+    box-shadow: 100px;
+    text-align: center;
+}
+
+.mainLogo {
+    text-align: center;
+}
+
+.mainForm {
+    padding: 1rem;
+}
+
+.control {
+    margin-bottom: 0.5em;
+}
+
+.control input {
+    width: 100%;
+    height: 2.5em;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding-left: 8px;
+}
+
+.loginButton {
+    margin-top: 1em;
+}
+
+.loginButton button{
+    height: 2.3rem;
+    width: 60%;
+    font-size: 18px;
+    background-color: #984cd6;
+    border: 1px solid #984cd6;
+    border-radius: 8px;
+    color: white;
+}
+.loginButton button:hover {
+    color: black;
+}
+.googleLogin button{
+    margin-bottom: 0.5em;
+    font-size: 18px;
+    padding: 0.2rem 1.5rem;
+    height: 2.3rem;
+    background-color: #984cd6;
+    border: 1px solid #984cd6;
+    border-radius: 8px;
+    color: white;
+}
+.googleLogin button:hover {
+    color: black;
+}
+.mainLinks {
+    margin-bottom: 3em;
+    text-align: center;
+}
+
+.links a{
+    text-decoration: none;
+    margin-bottom: 0.5em;
+}
+
+.links a:hover {
+    color: black;
+}
+
+
+
