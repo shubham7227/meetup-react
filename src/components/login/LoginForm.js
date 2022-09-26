@@ -50,7 +50,7 @@ const LoginForm = (props) => {
         </div>
       </form>
       <div className={classes.googleLogin}>
-        <button onClick={props.onGoogleLogin}>Sign in using Google</button>
+        <button onClick={props.onGoogleLogin}>Google Login</button>
       </div>
       <div className={classes.mainLinks}>
         <div className={classes.links}>

@@ -1,0 +1,23 @@
+.title {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-bottom: 2em;
+}
+
+.title h1 {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.title div {
+    text-align: right;
+}
+.title input {
+    height: 2rem;
+    position: relative;
+    top: 30%;
+    font-size: large;
+    width: 80%;
+    
+}
