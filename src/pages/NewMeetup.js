@@ -1,23 +1,15 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import NewMeetupForm from "../components/meetups/NewMeetupForm";
+import { useMeetupContext } from "../store/MeetupContext";
 
 const NewMeetupPage = () => {
   const navigate = useNavigate();
+  const { addMeetup } = useMeetupContext();
 
   const handleAddMeetup = (meetupData) => {
-    fetch(
-      "https://react-meetup-a13b8-default-rtdb.firebaseio.com/meetup.json",
-      {
-        method: "POST",
-        body: JSON.stringify(meetupData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then(() => {
-      navigate("/homepage", { replace: true });
-    });
+    addMeetup(meetupData);
+    navigate("/homepage", {replace: true})
   };
 
   return (

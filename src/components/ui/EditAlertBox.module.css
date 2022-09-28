@@ -1,0 +1,75 @@
+.main {
+    font: inherit;
+    z-index: 10;
+    width: 40%;
+    position: fixed;
+    top: 15vh;
+    left: 30%;
+    min-height: 60vh;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.main h2 {
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.mainForm {
+    padding-left: 8vh;
+    padding-right: 8vh;
+}
+
+.control {
+    padding-bottom: 1em;
+}
+.control label {
+    display: block;
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+
+.control input,
+.control textarea{
+    width: 100%;
+    font: inherit;
+    font-size: 1em;
+    border: 1px solid rgb(107, 99, 99);
+    border-radius: 4px;
+}
+
+.btn {
+    text-align: right;
+    margin-bottom: 5vh;
+}
+
+.cancelBtn {
+    font: inherit;
+    cursor: pointer;
+    color: #984cd6;
+    border: 1px solid #984cd6;
+    background-color: transparent;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    margin-right: 2rem;
+    width: 7rem;
+  }
+  
+  .cancelBtn:hover{
+    background-color: #ffe2ed;
+  }
+
+  .confirmBtn {
+    font: inherit;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #984cd6;
+    background-color: #984cd6;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    width: 7rem;
+  }
+  
+  .confirmBtn:hover{
+    background-color: #6a0cb6;
+  }

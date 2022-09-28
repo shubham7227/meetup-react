@@ -34,7 +34,7 @@ const Layout = (props) => {
     const res = await logout();
   };
   return (
-    <div>
+    <div className={classes.mainContent}>
       <MainNavigation
         loggedInUser={user?.displayName}
         handleLogout={handleLogout}

@@ -1,0 +1,43 @@
+.alertbox {
+    box-shadow: 0 1px 4px rgba(0,0,0,0);
+    border-radius: 6px;
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+    width: 25%;
+    position: fixed;
+    top: 10vh;
+    left: 37.5%;
+    z-index: 10;
+  }
+
+  .cancelBtn {
+    font: inherit;
+    cursor: pointer;
+    color: #984cd6;
+    border: 1px solid #984cd6;
+    background-color: transparent;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    margin-right: 2rem;
+    width: 7rem;
+  }
+  
+  .cancelBtn:hover{
+    background-color: #ffe2ed;
+  }
+
+  .confirmBtn {
+    font: inherit;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #984cd6;
+    background-color: #984cd6;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    width: 7rem;
+  }
+  
+  .confirmBtn:hover{
+    background-color: #6a0cb6;
+  }
