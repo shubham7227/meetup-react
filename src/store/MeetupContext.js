@@ -2,7 +2,6 @@ import { useState, createContext, useContext, useEffect } from "react";
 import { userAuthContext } from "./UserAuthContext";
 
 const MeetupContext = createContext();
-const SearchContext = createContext();
 
 export function useMeetupContext() {
   return useContext(MeetupContext);
