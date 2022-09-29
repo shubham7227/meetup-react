@@ -7,6 +7,7 @@ const EditAlertBox = (props) => {
     image: props.image,
     address: props.address,
     description: props.description,
+    id: props.id,
   });
   const handleFormSubmit = (event) => {
     event.preventDefault();

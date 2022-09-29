@@ -5,7 +5,7 @@ import classes from "./CreateAccountForm.module.css";
 const CreateAccountForm = (props) => {
   const [user, setUser] = useState({});
   const [passwordType, setPasswordType] = useState("password");
-  
+
   const handleShowPassword = (e) => {
     setPasswordType(e.target.checked ? "text" : "password");
   };
@@ -15,14 +15,13 @@ const CreateAccountForm = (props) => {
     const value = event.target.value;
     setUser((values) => ({ ...values, [name]: value }));
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (user.password !== user.cpassword) {
       alert("Passwords donot match");
     } else {
       props.onCreateAccount(user);
-      console.log(user);
     }
   };
   return (

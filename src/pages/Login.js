@@ -1,21 +1,17 @@
 import { useContext, useState, useEffect } from "react";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { userAuthContext } from "../store/UserAuthContext";
+import AuthContext from "../context/auth/auth-context";
 import LoginForm from "../components/login/LoginForm";
 
 const LoginPage = () => {
-  
-  const { user } = useContext(userAuthContext);
-
-  const Navigate = useNavigate();
+  const { user, Login, Googlelogin } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      Navigate("/homepage", { replace: true });
+      navigate("/homepage", { replace: true });
     }
-  },[user]);
+  }, [user]);
 
   //Prev WOrking
   // const Navigate = useNavigate();
@@ -32,12 +28,12 @@ const LoginPage = () => {
   // }, [user, loading]);
 
   const handleLogin = async (userCredentils) => {
-    console.log(userCredentils)
-    const res = await logInWithEmailAndPassword(userCredentils.Email, userCredentils.Password);
+    const res = await Login(userCredentils, navigate);
+    // console.log(user);
   };
 
   const handleGoogleLogin = async () => {
-    const res = await signInWithGoogle();
+    const res = await Googlelogin(navigate);
   };
 
   return (

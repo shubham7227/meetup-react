@@ -5,11 +5,10 @@ import classes from "./LoginForm.module.css";
 const LoginForm = (props) => {
   const [user, setUser] = useState({});
   const [passwordType, setPasswordType] = useState("password");
-  
+
   const handleShowPassword = (e) => {
     setPasswordType(e.target.checked ? "text" : "password");
   };
-
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -19,7 +18,7 @@ const LoginForm = (props) => {
       [name]: value,
     }));
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     props.onLogin(user);
@@ -32,10 +31,10 @@ const LoginForm = (props) => {
         <div className={classes.control}>
           <input
             type="email"
-            id="Email"
-            name="Email"
+            id="email"
+            name="email"
             placeholder="Email"
-            value={user.Email || ""}
+            value={user.email || ""}
             onChange={handleChange}
             required
           />
@@ -43,15 +42,15 @@ const LoginForm = (props) => {
         <div className={classes.control}>
           <input
             type={passwordType}
-            id="Password"
-            name="Password"
+            id="password"
+            name="password"
             placeholder="Password"
-            value={user.Password || ""}
+            value={user.password || ""}
             onChange={handleChange}
             required
           />
         </div>
-        
+
         <div>
           <input
             type="checkbox"

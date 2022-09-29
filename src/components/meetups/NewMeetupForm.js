@@ -1,10 +1,10 @@
 import { useContext, useRef } from "react";
-import { userAuthContext } from "../../store/UserAuthContext";
 import classes from "./NewMeetupForm.module.css";
 import Card from "../ui/Card";
+import AuthContext from "../../context/auth/auth-context";
 
 const NewMeetupForm = (props) => {
-  const { user } = useContext(userAuthContext);
+  const { user } = useContext(AuthContext);
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const addressInputRef = useRef();
@@ -12,7 +12,7 @@ const NewMeetupForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const enteredTitle = titleInputRef.current.value;
     const enteredImage = imageInputRef.current.value;
     const enteredAddress = addressInputRef.current.value;
@@ -32,16 +32,34 @@ const NewMeetupForm = (props) => {
     <Card>
       <form className={classes.form} onSubmit={handleSubmit}>
         <div className={classes.control}>
-          <label htmlFor="title">Meetup Title</label>
-          <input type="text" name="title" id="title" ref={titleInputRef} required />
+          <label htmlFor="title">Meetup Title </label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            ref={titleInputRef}
+            required
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="image">Meetup Image URL</label>
-          <input type="url" name="image" id="image" ref={imageInputRef} required />
+          <input
+            type="url"
+            name="image"
+            id="image"
+            ref={imageInputRef}
+            required
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="address">Address</label>
-          <input type="text" name="address" id="address" ref={addressInputRef} required />
+          <input
+            type="text"
+            name="address"
+            id="address"
+            ref={addressInputRef}
+            required
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="description">Description</label>

@@ -6,12 +6,12 @@ import AlertBox from "../ui/AlertBox";
 import BackDrop from "../ui/BackDrop";
 import classes from "./MeetupItem.module.css";
 import FavouriteContext from "../../store/favourite-context";
-import { useMeetupContext } from "../../store/MeetupContext";
+import MeetupContext from "../../context/meetup/meetup-context";
 import EditAlertBox from "../ui/EditAlertBox";
 
 const MeetupItem = (props) => {
   const favouriteContext = useContext(FavouriteContext);
-  const { deleteMeetup, updateMeetup } = useMeetupContext();
+  const { deleteMeetup, editMeetup } = useContext(MeetupContext);
   const [showAlert, setShowAlert] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const isItemFavourite = favouriteContext.checkFavourite(props.id);
@@ -52,7 +52,7 @@ const MeetupItem = (props) => {
   };
 
   const handleEditConfirm = (meetupData) => {
-    updateMeetup(props.id, meetupData);
+    editMeetup(props.id, meetupData);
     setShowEdit(false);
   };
 

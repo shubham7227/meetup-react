@@ -1,14 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logout } from "../../firebase";
-import { userAuthContext } from "../../store/UserAuthContext";
+import AuthContext from "../../context/auth/auth-context";
 import MainNavigation from "./MainNavigation";
 import Footer from "./Footer";
 import classes from "./Layout.module.css";
 
 const Layout = (props) => {
-  const { user } = useContext(userAuthContext);
+  const { user, Logout } = useContext(AuthContext);
 
   const Navigate = useNavigate();
 
@@ -31,12 +29,12 @@ const Layout = (props) => {
   // }, [user, loading]);
 
   const handleLogout = async () => {
-    const res = await logout();
+    const res = await Logout();
   };
   return (
     <div className={classes.mainContent}>
       <MainNavigation
-        loggedInUser={user?.displayName}
+        loggedInUser={user?.data.name}
         handleLogout={handleLogout}
       />
       <main className={classes.main}>{props.children}</main>

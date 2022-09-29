@@ -1,5 +1,6 @@
-import { useReducer, useEffect, useContext } from "react";
+import { useReducer } from "react";
 
+import * as api from "../../api/apiIndex.js";
 import MeetupContext from "./meetup-context";
 import MeetupReducer from "./MeetupReducer";
 import {
@@ -7,45 +8,69 @@ import {
   ADD_MEETUP,
   DELETE_MEETUP,
   EDIT_MEETUP,
-} from "./meetup-action";
+} from "../../constants/actionTypes";
 
 const MeetupState = (props) => {
   const initialState = {
     meetups: [],
   };
 
-  const loadMeetups = (email) => {
-    dispatch({
-      type: LOAD_MEETUP,
-      payload: email,
-    });
-  };
-
-  const addMeetup = (meetup) => {
-    dispatch({
-      type: ADD_MEETUP,
-      payload: meetup,
-    });
-  };
-
-  const deleteMeetup = (meetupId) => {
-    dispatch({
-      type: DELETE_MEETUP,
-      payload: meetupId,
-    });
-  };
-
-  const editMeetup = (meetupId, updatedMeetup) => {
-    dispatch({
-      type: EDIT_MEETUP,
-      payload: {
-        id: meetupId,
-        meetupData: updatedMeetup,
-      },
-    });
-  };
-
   const [state, dispatch] = useReducer(MeetupReducer, initialState);
+
+  const loadMeetups = async (token) => {
+    try {
+      const { data } = await api.fetchMeetups(token);
+
+      dispatch({
+        type: LOAD_MEETUP,
+        payload: data.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const addMeetup = async (meetup, router) => {
+    try {
+      const { data } = await api.addMeetup(meetup);
+
+      dispatch({
+        type: ADD_MEETUP,
+        payload: data,
+      });
+      router("/homepage", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteMeetup = async (meetupId) => {
+    try {
+      const { data } = await api.deleteMeetup(meetupId);
+
+      dispatch({
+        type: DELETE_MEETUP,
+        payload: meetupId,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const editMeetup = async (meetupId, updatedMeetup) => {
+    try {
+      const { data } = await api.updateMeetup(meetupId, updatedMeetup);
+      dispatch({
+        type: EDIT_MEETUP,
+        payload: {
+          id: meetupId,
+          meetupData: data.data,
+        },
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <MeetupContext.Provider

@@ -1,15 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import NewMeetupForm from "../components/meetups/NewMeetupForm";
-import { useMeetupContext } from "../store/MeetupContext";
+import MeetupContext from "../context/meetup/meetup-context";
 
 const NewMeetupPage = () => {
   const navigate = useNavigate();
-  const { addMeetup } = useMeetupContext();
+  const { addMeetup } = useContext(MeetupContext);
 
   const handleAddMeetup = (meetupData) => {
-    addMeetup(meetupData);
-    navigate("/homepage", {replace: true})
+    addMeetup(meetupData, navigate);
   };
 
   return (

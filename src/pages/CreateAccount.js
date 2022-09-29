@@ -1,14 +1,11 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, registerWithEmailAndPassword } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { userAuthContext } from "../store/UserAuthContext";
 
 import CreateAccountForm from "../components/login/CreateAccountForm";
+import AuthContext from "../context/auth/auth-context";
 
 const CreateAccountPage = () => {
-    
-  const { user } = useContext(userAuthContext);
+  const { user, Signup } = useContext(AuthContext);
 
   const Navigate = useNavigate();
 
@@ -16,13 +13,11 @@ const CreateAccountPage = () => {
     if (user) {
       Navigate("/homepage", { replace: true });
     }
-  },[user]);
-  
-  
+  }, [user]);
+
   //PRev working
   // const Navigate = useNavigate();
   // const [user, loading, error] = useAuthState(auth);
-  
 
   // useEffect(() => {
   //   if (loading) {
@@ -34,10 +29,8 @@ const CreateAccountPage = () => {
   // }, [user, loading]);
 
   const handleCreateAccount = async (userData) => {
-    const email = userData.email;
-    const password = userData.password;
-    const name = userData.name;
-    const res = await registerWithEmailAndPassword(name, email, password)
+    const res = await Signup(userData, Navigate);
+    console.log(res);
   };
 
   return (

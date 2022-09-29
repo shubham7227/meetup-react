@@ -1,28 +1,25 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ForgotPasswordForm from "../components/login/ForgotPasswordForm";
-import { auth, sendPasswordReset } from "../firebase";
-import { userAuthContext } from "../store/UserAuthContext";
+import AuthContext from "../context/auth/auth-context";
 
 const ForgotPasswordPage = () => {
-    const { user } = useContext(userAuthContext)
-    const Navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const Navigate = useNavigate();
 
-    useEffect(() => {
-      if(user) {
-        Navigate("/homepage", {replace:true})
-      }
-    }, [user])
-    
+  useEffect(() => {
+    if (user) {
+      Navigate("/homepage", { replace: true });
+    }
+  }, [user]);
+
   const handleReset = async (email) => {
-    const err = await sendPasswordReset(email)
     console.log("Handle Reset", email);
-    if(err) {
-        alert("Email not found")
-    }
-    else {
-        Navigate("/", {replace:true})
-    }
+    // if (err) {
+    //   alert("Email not found");
+    // } else {
+    //   Navigate("/", { replace: true });
+    // }
   };
   return (
     <div>

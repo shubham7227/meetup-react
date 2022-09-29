@@ -7,7 +7,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
-  updateProfile
+  updateProfile,
 } from "firebase/auth";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 const firebaseConfig = {
@@ -33,42 +33,43 @@ const signInWithGoogle = async () => {
     const userRef = await ref(db, "users/" + user.uid);
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
-      
-      if(!data) {
+
+      if (!data) {
         set(ref(db, "users/" + user.uid), {
           name: user.displayName,
           email: user.email,
         });
       }
     });
+
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
+const userLogin = async (email, password) => {
   try {
-    console.log(email);
-    console.log(password);
-    await signInWithEmailAndPassword(auth, email, password);
+    const data = await signInWithEmailAndPassword(auth, email, password);
+    return data.user;
   } catch (err) {
-    //console.error(err);
-    alert(err.message);
+    throw err;
   }
 };
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const userSignUp = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await updateProfile(user, {
-      displayName: name
-    })
+      displayName: name,
+    });
     await set(ref(db, "users/" + res.user.uid), {
       name: name,
       email: email,
     });
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -80,25 +81,23 @@ const sendPasswordReset = async (email) => {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
   } catch (err) {
-    return (err)
+    return err;
   }
 };
 
-const logout = () => {
+const userLogout = () => {
   signOut(auth);
 };
 
-const fetchMeetings = async () => {
-
-}
+const fetchMeetings = async () => {};
 
 export {
   app,
   auth,
   db,
   signInWithGoogle,
-  logInWithEmailAndPassword,
-  registerWithEmailAndPassword,
+  userLogin,
+  userSignUp,
   sendPasswordReset,
-  logout,
+  userLogout,
 };
