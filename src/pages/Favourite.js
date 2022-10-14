@@ -1,16 +1,17 @@
-import { useContext } from "react";
-
-import FavouriteContext from "../store/favourite-context";
 import MeetupList from "../components/meetups/MeetupList";
+import { useSelector } from "react-redux";
 
 const FavouritePage = () => {
-  const favouriteContext = useContext(FavouriteContext);
+  const favourites = useSelector(
+    (state) => state.favouriteReducer.favouriteMeetups
+  );
+  console.log(favourites);
   let content;
 
-  if (favouriteContext.totalFavourites === 0) {
+  if (favourites.length === 0) {
     content = <p>You do not have any favourites</p>;
   } else {
-    content = <MeetupList meetups={favouriteContext.favourites} />;
+    content = <MeetupList meetupData={favourites} />;
   }
 
   return (

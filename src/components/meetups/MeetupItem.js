@@ -5,33 +5,42 @@ import Card from "../ui/Card";
 import AlertBox from "../ui/AlertBox";
 import BackDrop from "../ui/BackDrop";
 import classes from "./MeetupItem.module.css";
-import FavouriteContext from "../../store/favourite-context";
-// import MeetupContext from "../../context/meetup/meetup-context";
 import EditAlertBox from "../ui/EditAlertBox";
 
 import { deleteMeetup, editMeetup } from "../../redux/action/meetupAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addFavourite,
+  removeFavourite,
+} from "../../redux/action/favouriteAction";
 
 const MeetupItem = (props) => {
   const dispatch = useDispatch();
 
-  // const { deleteMeetup, editMeetup } = useContext(MeetupContext);
-  const favouriteContext = useContext(FavouriteContext);
   const [showAlert, setShowAlert] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const isItemFavourite = favouriteContext.checkFavourite(props.id);
+
+  const favourites = useSelector(
+    (state) => state.favouriteReducer.favouriteMeetups
+  );
+
+  const isItemFavourite = favourites.some((meetup) =>
+    meetup._id === props.id ? true : false
+  );
 
   const handleToggleFavourite = () => {
     if (isItemFavourite) {
-      favouriteContext.removeFavourite(props.id);
+      dispatch(removeFavourite(props.id));
     } else {
-      favouriteContext.addFavourite({
-        id: props.id,
-        title: props.title,
-        image: props.image,
-        address: props.address,
-        description: props.description,
-      });
+      dispatch(
+        addFavourite({
+          _id: props.id,
+          meetup_Title: props.title,
+          meeting_Image_Url: props.image,
+          address: props.address,
+          description: props.description,
+        })
+      );
     }
   };
 

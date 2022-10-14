@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import FavouriteContext from "../../store/favourite-context";
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = (props) => {
-  const favouriteContext = useContext(FavouriteContext);
+  const totalFavourites = useSelector(
+    (state) => state.favouriteReducer.favouriteMeetups
+  );
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
@@ -22,9 +23,7 @@ const MainNavigation = (props) => {
           <li>
             <Link to="/favourites">
               Favourite{" "}
-              <span className={classes.badge}>
-                {favouriteContext.totalFavourites}
-              </span>
+              <span className={classes.badge}>{totalFavourites.length}</span>
             </Link>
           </li>
           <li>

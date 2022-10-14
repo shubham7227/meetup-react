@@ -12,3 +12,7 @@ export const SIGNUP = "SIGNUP";
 //Loading
 export const START_LOADING = "START_LOADING";
 export const END_LOADING = "END_LOADING";
+
+//Favourite
+export const ADD_FAVOURITE = "ADD_FAVOURITE";
+export const REMOVE_FAVOURITE = "REMOVE_FAVOURITE";

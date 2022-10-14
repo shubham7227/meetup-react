@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ForgotPasswordForm from "../components/login/ForgotPasswordForm";
-import AuthContext from "../context/auth/auth-context";
 
 const ForgotPasswordPage = () => {
   const user = useSelector((state) => state.userReducer.authData);
-  // const { user } = useContext(AuthContext);
   const Navigate = useNavigate();
 
   useEffect(() => {
@@ -17,11 +15,6 @@ const ForgotPasswordPage = () => {
 
   const handleReset = async (email) => {
     console.log("Handle Reset", email);
-    // if (err) {
-    //   alert("Email not found");
-    // } else {
-    //   Navigate("/", { replace: true });
-    // }
   };
   return (
     <div>

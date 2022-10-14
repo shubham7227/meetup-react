@@ -1,26 +1,37 @@
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
-// import MeetupContext from "../context/meetup/meetup-context";
-// import AuthContext from "../context/auth/auth-context";
+
+import { useSelector } from "react-redux";
 
 const AllMeetupsPage = () => {
-  // const { user } = useContext(AuthContext);
+  const meetupData = useSelector((state) => state.meetupReducer.meetups);
 
-  // const { loadMeetups } = useContext(MeetupContext);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // useEffect(() => {
-  //   if (user) {
-  //     loadMeetups();
-  //   }
-  //   // console.log(Meetups);
-  // }, [user]);
+  const handleSearch = (event) => {
+    const queryInput = event.target.value.toLowerCase();
+    setSearchQuery(queryInput);
+  };
+
+  const filteredMeetups = meetupData.filter((meetup) => {
+    return meetup.meetup_Title?.toLowerCase().includes(searchQuery);
+  });
 
   return (
     <section>
       <div>
         <h1>All Meetups</h1>
+        <div>
+          <input
+            type="search"
+            name="searchQuery"
+            id="searchQuery"
+            placeholder="Search"
+            onChange={handleSearch}
+          />
+        </div>
       </div>
-      <MeetupList />
+      <MeetupList meetupData={filteredMeetups} />
     </section>
   );
 };

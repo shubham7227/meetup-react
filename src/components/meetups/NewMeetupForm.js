@@ -1,12 +1,9 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import classes from "./NewMeetupForm.module.css";
 import Card from "../ui/Card";
 import { useSelector } from "react-redux";
-// import AuthContext from "../../context/auth/auth-context";
 
 const NewMeetupForm = (props) => {
-  // const { user } = useContext(AuthContext);
-
   const user = useSelector((state) => state.userReducer.authData);
   const titleInputRef = useRef();
   const imageInputRef = useRef();
