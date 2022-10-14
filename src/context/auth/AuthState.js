@@ -1,76 +1,79 @@
-import { useReducer } from "react";
+// Deprecated Replaced by Redux
 
-import * as api from "../../api/apiIndex.js";
-import AuthContext from "./auth-context";
-import AuthReducer from "./AuthReducer";
+// import { useReducer } from "react";
 
-import { LOGIN, LOGOUT, SIGNUP } from "../../constants/actionTypes";
+// import * as api from "../../api/apiIndex.js";
+// import AuthContext from "./auth-context";
+// import AuthReducer from "./AuthReducer";
 
-const AuthStateProvider = (props) => {
-  const initialState = {
-    authData: JSON.parse(localStorage.getItem("user")),
-  };
+// import { LOGIN, LOGOUT, SIGNUP } from "../../constants/actionTypes";
 
-  const [state, dispatch] = useReducer(AuthReducer, initialState);
+// const AuthStateProvider = (props) => {
+//   const initialState = {
+//     authData: JSON.parse(localStorage.getItem("user")),
+//   };
 
-  const Login = async (formData, router) => {
-    try {
-      const data = await api.login(formData);
-      //console.log(data.data);
-      dispatch({
-        type: LOGIN,
-        payload: data.data,
-      });
-      router("/homepage", { replace: true });
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+//   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  const Logout = async () => {
-    try {
-      dispatch({
-        type: LOGOUT,
-      });
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+//   const Login = async (formData, router) => {
+//     try {
+//       const data = await api.login(formData);
+//       //console.log(data.data);
+//       dispatch({
+//         type: LOGIN,
+//         payload: data.data,
+//       });
+//       router("/homepage", { replace: true });
+//     } catch (err) {
+//       console.log(err.message);
+//     }
+//   };
 
-  const Signup = async (formData, router) => {
-    try {
-      const data = await api.signup(formData);
-      console.log(data);
-      dispatch({
-        type: SIGNUP,
-        payload: data,
-      });
-      router("/homepage", { replace: true });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+//   const Logout = async () => {
+//     try {
+//       dispatch({
+//         type: LOGOUT,
+//       });
+//     } catch (err) {
+//       console.log(err.message);
+//     }
+//   };
 
-  const Googlelogin = async (router) => {
-    try {
-      const data = await api.googlelogin();
-      dispatch({
-        type: LOGIN,
-        payload: data,
-      });
-      router("/homepage", { replace: true });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+//   const Signup = async (formData, router) => {
+//     try {
+//       const data = await api.signup(formData);
+//       console.log(data);
+//       dispatch({
+//         type: SIGNUP,
+//         payload: data,
+//       });
+//       router("/homepage", { replace: true });
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
 
-  return (
-    <AuthContext.Provider
-      value={{ user: state.authData, Login, Logout, Signup, Googlelogin }}
-    >
-      {props.children}
-    </AuthContext.Provider>
-  );
-};
+//   const Googlelogin = async (router) => {
+//     try {
+//       const data = await api.googlelogin();
+//       console.log(data);
+//       // dispatch({
+//       //   type: LOGIN,
+//       //   payload: data,
+//       // });
+//       // router("/homepage", { replace: true });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   };
 
-export default AuthStateProvider;
+//   return (
+//     <AuthContext.Provider
+//       value={{ user: state.authData, Login, Logout, Signup, Googlelogin }}
+//     >
+//       {props.children}
+//     </AuthContext.Provider>
+//   );
+// };
+
+// export default AuthStateProvider;

@@ -11,7 +11,7 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const googlelogin = () => API.get("/google");
+export const googlelogin = async () => API.get("/google");
 
 export const signup = (userData) => API.post("/user/create", userData);
 

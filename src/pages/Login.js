@@ -1,10 +1,15 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/auth/auth-context";
+// import AuthContext from "../context/auth/auth-context";
 import LoginForm from "../components/login/LoginForm";
 
+import { useDispatch, useSelector } from "react-redux";
+import { Login, Googlelogin } from "../redux/action/userAction";
+
 const LoginPage = () => {
-  const { user, Login, Googlelogin } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.authData);
+  // const { user, Login, Googlelogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,12 +33,12 @@ const LoginPage = () => {
   // }, [user, loading]);
 
   const handleLogin = async (userCredentils) => {
-    const res = await Login(userCredentils, navigate);
+    const res = dispatch(Login(userCredentils, navigate));
     // console.log(user);
   };
 
   const handleGoogleLogin = async () => {
-    const res = await Googlelogin(navigate);
+    const res = dispatch(Googlelogin(navigate));
   };
 
   return (

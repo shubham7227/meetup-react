@@ -1,11 +1,15 @@
 import { useContext, useState } from "react";
 import classes from "./MeetupList.module.css";
 import MeetupItem from "./MeetupItem";
-import MeetupContext from "../../context/meetup/meetup-context";
+// import MeetupContext from "../../context/meetup/meetup-context";
+
+import { useSelector } from "react-redux";
 
 const MeetupList = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { meetupData } = useContext(MeetupContext);
+  // const { meetupData } = useContext(MeetupContext);
+
+  const meetupData = useSelector((state) => state.meetupReducer.meetups);
 
   const handleSearch = (event) => {
     const queryInput = event.target.value.toLowerCase();
@@ -13,7 +17,7 @@ const MeetupList = (props) => {
   };
 
   const filteredMeetups = meetupData.filter((meetup) => {
-    return meetup.meetup_Title.toLowerCase().includes(searchQuery);
+    return meetup.meetup_Title?.toLowerCase().includes(searchQuery);
   });
 
   return (

@@ -1,5 +1,6 @@
-import { createContext } from "react";
+// Deprecated Replaced by Redux
+//  import { createContext } from "react";
 
-const MeetupContext = createContext();
+// const MeetupContext = createContext();
 
-export default MeetupContext;
+// export default MeetupContext;

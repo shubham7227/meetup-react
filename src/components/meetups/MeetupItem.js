@@ -6,12 +6,17 @@ import AlertBox from "../ui/AlertBox";
 import BackDrop from "../ui/BackDrop";
 import classes from "./MeetupItem.module.css";
 import FavouriteContext from "../../store/favourite-context";
-import MeetupContext from "../../context/meetup/meetup-context";
+// import MeetupContext from "../../context/meetup/meetup-context";
 import EditAlertBox from "../ui/EditAlertBox";
 
+import { deleteMeetup, editMeetup } from "../../redux/action/meetupAction";
+import { useDispatch } from "react-redux";
+
 const MeetupItem = (props) => {
+  const dispatch = useDispatch();
+
+  // const { deleteMeetup, editMeetup } = useContext(MeetupContext);
   const favouriteContext = useContext(FavouriteContext);
-  const { deleteMeetup, editMeetup } = useContext(MeetupContext);
   const [showAlert, setShowAlert] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const isItemFavourite = favouriteContext.checkFavourite(props.id);
@@ -43,7 +48,7 @@ const MeetupItem = (props) => {
   };
 
   const handleDeleteConfirm = () => {
-    deleteMeetup(props.id);
+    dispatch(deleteMeetup(props.id));
     setShowAlert(false);
   };
 
@@ -52,7 +57,7 @@ const MeetupItem = (props) => {
   };
 
   const handleEditConfirm = (meetupData) => {
-    editMeetup(props.id, meetupData);
+    dispatch(editMeetup(props.id, meetupData));
     setShowEdit(false);
   };
 

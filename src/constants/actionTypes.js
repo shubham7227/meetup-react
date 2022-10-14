@@ -8,3 +8,7 @@ export const EDIT_MEETUP = "edit_meetup";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const SIGNUP = "SIGNUP";
+
+//Loading
+export const START_LOADING = "START_LOADING";
+export const END_LOADING = "END_LOADING";

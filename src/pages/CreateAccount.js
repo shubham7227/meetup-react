@@ -1,11 +1,17 @@
 import { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import CreateAccountForm from "../components/login/CreateAccountForm";
-import AuthContext from "../context/auth/auth-context";
+// import AuthContext from "../context/auth/auth-context";
+
+import { Signup } from "../redux/action/userAction";
 
 const CreateAccountPage = () => {
-  const { user, Signup } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.authData);
+
+  // const { user, Signup } = useContext(AuthContext);
 
   const Navigate = useNavigate();
 
